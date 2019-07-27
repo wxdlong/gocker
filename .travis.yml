@@ -1,0 +1,26 @@
+env:
+  global:
+    - secure: hHbbZc18Ko1f8R+kDZAvs3gINOUVmNPedebz96W0KDJ1ssOGTPe4drkY6Gm9ZnfwZU/em3KB572Ab7pgBpNxJirjmEbFHYwY1vhfL5/Ij5iq6/MRq22FS8NlZLmRHq/7Rzw31G7r51tq2T7RAkPT4HRQR8mVGlxwrjsbUGTT5kUOeQA0mReDXhsdfuVzlMSaCdEnGpJLUlAd0T/XuHRr0U3fq84L28hxbOuNCFVaT9Xa850nXYfJ2KtkXXG/9KQcW7VGKHqW7fTpH8AInHzN9+BSwoczb2iyR9tOHI61Ge40DctuagtoPyNKJE5mxhYmE5jJXO3hFjP4WYQwHQfZS17zv1m/mTjK1JetGPob+n7GG7/Z5Kzg7AUHmMbesjBKgSytuKL01gC8P5dzlgVXKnvqxv+Kl/W7te/iBT0t1GC5paFg+aK3FZGUKk5IemBLteSwbVhU1GeEDnsJs6vgS1CpkQQ+FOM0J4jxnk4h4xTxIWfelqFqmdSLIiVF59ZFIy5lzBANF7zc4BgDGszTKGRz/UJYk/1R3HDCiSQIKxuM7MO27F+faURJA0qcHnqh+zbqGpy2smWVIoPhQUOjDfqjzJEwAcWDdi9szn+1Z+fmVXg79XO5h7qtxyicABTincHCl86ZEf+4UZWBcuI1uDRjSbQzIs3WPgpEumJdQQo=
+    - DOCKER_USER="wxdlong"
+    - IMAGE="gocker"
+
+
+
+services:
+  - docker
+
+
+before_install:
+  - echo "before install"
+
+install:
+  - echo "install"
+  - docker build -t ${DOCKER_USER}/${IMAGE} .
+
+script:
+  - echo "$DOCKER_PWD" | docker login -u "${DOCKER_USER}" --password-stdin
+  - docker images
+  - docker push ${DOCKER_USER}/${IMAGE}
+
+after_success:
+  - echo "after_success"

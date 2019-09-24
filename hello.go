@@ -7,10 +7,9 @@ import (
 var goVersion = "1.12"
 var date = "2019-07-27"
 
+func main() {
 
-func  main() {
-
-	fmt.Println("hello gocker! ")
+	fmt.Println("Hello gocker! I am wxdlong.")
 	fmt.Println(date)
 	fmt.Println(goVersion)
 }

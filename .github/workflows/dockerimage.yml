@@ -16,6 +16,6 @@ jobs:
       run: |
         echo "ACCESS_TOKEN: ${ACCESS_TOKEN:0-9:9}"
         docker login docker.pkg.github.com -u wxdlong -p ${ACCESS_TOKEN}
-        docker build . --file Dockerfile --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/gocker
-        docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/gocker
+        docker build . --file Dockerfile --tag docker.pkg.github.com/wxdlong/gocker
+        docker push docker.pkg.github.com/wxdlong/gocker
       
